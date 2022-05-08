@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MemHome</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div>
+    {% if user.is_authenticated %}
+        <div align="center">
+        </div>
+        <a class="p-2 text-dark" href="{% url 'home' %}">Главная </a>
+        <a class="p-2 text-dark" href="{% url 'profile' %}">Профиль </a>
+        <a class="p-2 text-dark" href="{% url 'profilelist' %}">Пользователи </a>
+        <a class="p-2 text-dark" href="{% url 'logout' %}">Выход </a>
+    {% else %}
+        <a class="p-2 text-dark" href="{% url 'home' %}">Главная </a>
+        <a class="p-2 text-dark" href="{% url 'login' %}">Авторизация </a>
+        <a class="p-2 text-dark" href="{% url 'register' %}">Регистрация </a>
+    {% endif %}
+</div>
+<main class="main">
+    <div class="container">{% block welcome %}{% endblock %}
+        {% if user.is_authenticated %}
+           <span>{% block letsearch %}{% endblock %}</span>
+            <div class="container">{% block content%}{% endblock %}</div>
+        {% else %}
+            <span>{% block join_us %}{% endblock %}</span>
+        {% endif %}
+    </div>
+</main>
+
+</body>
+</html>

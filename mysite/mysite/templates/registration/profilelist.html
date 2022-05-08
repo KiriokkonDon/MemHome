@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ Пользователи 030
+{% endblock %}
+
+{% block content %}
+<h1 align="center">Пользователи MemHome</h1>
+{% for profile in profiles %}
+<p>
+    {{ profile.user }}
+</p>
+{% endfor %}
+
+{% endblock content %}
